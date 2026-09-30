@@ -1,0 +1,111 @@
+{
+  "info": {
+    "name": "Finanças API",
+    "description": "Endpoints da API de movimentações financeiras",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:8080" }
+  ],
+  "item": [
+    {
+      "name": "Cadastrar receita",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{baseUrl}}/movimentacoes",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"descricao\": \"Salário\",\n  \"valor\": 5000.00,\n  \"tipo\": \"RECEITA\",\n  \"data\": \"2026-09-01\",\n  \"categoria\": \"Trabalho\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Cadastrar despesa",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{baseUrl}}/movimentacoes",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"descricao\": \"Aluguel\",\n  \"valor\": 1500.00,\n  \"tipo\": \"DESPESA\",\n  \"data\": \"2026-09-05\",\n  \"categoria\": \"Moradia\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Listar movimentações",
+      "request": { "method": "GET", "url": "{{baseUrl}}/movimentacoes" }
+    },
+    {
+      "name": "Listar por tipo",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/movimentacoes?tipo=DESPESA",
+          "host": ["{{baseUrl}}"],
+          "path": ["movimentacoes"],
+          "query": [{ "key": "tipo", "value": "DESPESA" }]
+        }
+      }
+    },
+    {
+      "name": "Listar por categoria",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/movimentacoes?categoria=Trabalho",
+          "host": ["{{baseUrl}}"],
+          "path": ["movimentacoes"],
+          "query": [{ "key": "categoria", "value": "Trabalho" }]
+        }
+      }
+    },
+    {
+      "name": "Buscar por id",
+      "request": { "method": "GET", "url": "{{baseUrl}}/movimentacoes/1" }
+    },
+    {
+      "name": "Alterar movimentação",
+      "request": {
+        "method": "PUT",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{baseUrl}}/movimentacoes/2",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"descricao\": \"Aluguel + condomínio\",\n  \"valor\": 1800.00,\n  \"tipo\": \"DESPESA\",\n  \"data\": \"2026-09-05\",\n  \"categoria\": \"Moradia\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Excluir movimentação",
+      "request": { "method": "DELETE", "url": "{{baseUrl}}/movimentacoes/2" }
+    },
+    {
+      "name": "Relatório mensal (saldo)",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/movimentacoes/relatorio?ano=2026&mes=9",
+          "host": ["{{baseUrl}}"],
+          "path": ["movimentacoes", "relatorio"],
+          "query": [
+            { "key": "ano", "value": "2026" },
+            { "key": "mes", "value": "9" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Erro - valor inválido",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{baseUrl}}/movimentacoes",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"descricao\": \"Teste\",\n  \"valor\": 0,\n  \"tipo\": \"DESPESA\",\n  \"data\": \"2026-09-01\",\n  \"categoria\": \"Teste\"\n}"
+        }
+      }
+    }
+  ]
+}
