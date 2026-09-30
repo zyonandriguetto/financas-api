@@ -84,6 +84,12 @@ Linux / macOS:
 
 A API ficará disponível em **http://localhost:8080**.
 
+> **Windows com nome de usuário acentuado** (ex.: `C:\Users\Usuário`): o Java pode falhar ao iniciar o servidor com o erro `Unable to establish loopback connection`. Para contornar, execute:
+>
+> ```bash
+> mvnw.cmd spring-boot:run -Dspring-boot.run.jvmArguments="-Djdk.net.unixdomain.tmpdir=C:\Users\Public"
+> ```
+
 ### Rodar os testes
 
 ```bash
