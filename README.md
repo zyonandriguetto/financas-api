@@ -66,7 +66,7 @@ Quando alguma regra é violada, a API responde `400 Bad Request` com a mensagem 
 **Pré-requisito:** JDK 17 ou superior instalado (não é necessário instalar o Maven, o projeto usa o Maven Wrapper).
 
 ```bash
-git clone https://github.com/<seu-usuario>/financas-api.git
+git clone https://github.com/zyonandriguetto/financas-api.git
 cd financas-api
 ```
 
